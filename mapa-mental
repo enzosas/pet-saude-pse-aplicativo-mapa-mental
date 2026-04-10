@@ -6,28 +6,64 @@ markmap:
 
 COLAR ESSE ARQUIVO (INCLUINDO ESSE CABEÇALHO ACIMA) NO SITE https://markmap.js.org/repl
 
-# Reunião educarweb
-## Nota: seria interessante que eles conseguissem desenvolver em no máximo 2 semanas
-## Objetivos da solução deles
-### Dar o mínimo de trabalho possível para os professores
-## Possiveis soluções disponibilizadas por eles
-
-### Botão que gere pdf da turma com nome e nascimento
-#### Prós 
-##### Acho que nenhum, seria das alternativas a pior, mas ainda assim satisfaria nosso objetivo
-#### Contras
-##### deverá ser por nós elaborado um jeito de fazer os professores pelo menos uma vez enviarem para nosso sistema as turmas
-### [IDEAL] Rota que nós tenhamos acesso que retorne json com alunos e nascimento
-#### Prós 
-##### não envolverá qualquer tipo de pré registro das turmas pelos professores 
-#### Contras 
-##### Não sei como seria a parte de segurança/autenticação da rota
-##### Não sei que tipos de ids usariamos para acessar alguma turma especifica
-##### Eles vão demorar um monte pra fazer
-
-## Cenário em que eles não fazem nada
-### Extrair dados daquele pdf que contem dados sensiveis
-#### Envolve os professores enviarem o pdf para algum responsável por nosso sistema para gerar o banco de tal turma para nosso sistema
+# Exportação de turmas
+## EducarWeb
+### Reunião
+- O que ficou decidido?
+  - responsáveis do EducarWeb nos enviarão dados contendo:
+  escolas,
+  turmas,
+  nomes dos alunos e
+  respectivas datas de nascimento
+    - como receberemos esses dados? essas são algumas possibilidades:
+      - tipo de arquivo
+        - nota: obrigatoriamente, qualquer seja o tipo de arquivo, o conteudo dele OBRIGATORIAMENTE deve ser padronizado em todos os envio.
+        - pdf
+          - prós
+            - mais facil talvez para os responsáveis do educarweb disponibilizarem
+          - contras
+            - seremos encarregados de elaborar um leitor do pdf para extrair os dados
+        - json
+          - o que que é isso?
+            - um formato de texto leve para troca de dados. exemplo:
+            - ```json
+              {
+                "escola": "escola abecedario",
+                "alunos": ["joao", "maria"]
+              }
+              ```
+          - prós
+            - deixa muito fácil a importação das turmas
+          - contras
+            - talvez eles não saibam fazer
+        - outros
+          - checar se realmente não é possivel receber em nenhum dos anteriores, a complexidade aumentaria desnecessariamente (por exemplo, lidar com muitos arquivos ou arquivos com formatação)
+      - botão na pagina da turma que gere pdf com os dados
+        - prós
+          - Acho que nenhum, seria a pior das alternativas, mas ainda assim satisfaria nosso objetivo
+        - contras
+          - Os professores responsáveis por cada turma serão responsáveis pelo envio (péssimo!)
+          - agrava a problemática de alunos serem transferidos pois o professor teria que enviar de novo
+      - [IDEAL] Rota que nós tenhamos acesso que retorne json com os dados
+        - prós
+          - não envolverá qualquer tipo de pré registro das turmas pelos professores
+          - como teremos acesso direto à rota, os arquivos sempre estarão atualizados, e o problema dos alunos transferidos nâo existirá
+        - contras
+          - Não sei como seria a parte de segurança/autenticação da rota
+          - Não sei que tipos de ids usariamos para acessar alguma turma especifica
+          - Eles vão demorar um monte pra fazer
+      - Envio periódico por parte deles
+        - pode ser problemático
+    - deve ser pensada a frequência que receberemos os dados
+      - o ideal é que os tenhamos acesso em tempo real a dados também atualizados em tempo real, o que favorece a metodologia de ter a rota http para receber os dados
+      - caso recebamos os dados muitas poucas vezes por ano, professores vão passar pelo seguinte:
+        - adicionar manualmente o nome de muitos alunos no registro
+        - marcar como ausentes muitos alunos
+    - cenário em que os responsáveis não nos ajudam
+      - extrair dados daquele pdf que contém dados sensiveis
+        - envolve os professores enviarem o pdf para algum responsável por nosso sistema para gerar o banco de tal turma para nosso sistema, alem de fazer todo o codigo que leia os dados do pdf
+        - LGPD
+  - o aplicativo deve fornecer a possibilidade de adicionar manualmente alunos além dos que serão importados
 
 # Desenvolvimento do App
 ## Fluxo
@@ -36,6 +72,7 @@ COLAR ESSE ARQUIVO (INCLUINDO ESSE CABEÇALHO ACIMA) NO SITE https://markmap.js.
 - Preencher Escola
 - Preencher Data
 - Selecionar turma para importar alunos e nascimentos
+- Adicionar alunos não contemplados na importação
 - Dos alunos importados, marcar os ausentes
   - deixar como default o check de presença para agilizar o preenchimento 
 - preencher para cada aluno o peso e altura
