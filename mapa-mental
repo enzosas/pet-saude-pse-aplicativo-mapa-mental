@@ -17,7 +17,7 @@ COLAR ESSE ARQUIVO (INCLUINDO ESSE CABEÇALHO ACIMA) NO SITE https://markmap.js.
   respectivas datas de nascimento
     - como receberemos esses dados? essas são algumas possibilidades:
       - tipo de arquivo
-        - nota: obrigatoriamente, qualquer seja o tipo de arquivo, o conteudo dele OBRIGATORIAMENTE deve ser padronizado em todos os envio.
+        - nota: qualquer seja o tipo de arquivo, o conteudo dele OBRIGATORIAMENTE deve ser padronizado em todos os envio.
         - pdf
           - prós
             - mais facil talvez para os responsáveis do educarweb disponibilizarem
@@ -37,7 +37,8 @@ COLAR ESSE ARQUIVO (INCLUINDO ESSE CABEÇALHO ACIMA) NO SITE https://markmap.js.
           - contras
             - talvez eles não saibam fazer
         - outros
-          - checar se realmente não é possivel receber em nenhum dos anteriores, a complexidade aumentaria desnecessariamente (por exemplo, lidar com muitos arquivos ou arquivos com formatação)
+          - checar se realmente não é possivel receber em nenhum dos anteriores, a complexidade aumentaria desnecessariamente (por exemplo, lidar com muitos arquivos ou com arquivos com formatação)
+      - idealmente, desconsiderando o tipo de arquivo, deveríamos receber dados de todas as escolas do pse em um só arquivo
       - botão na pagina da turma que gere pdf com os dados
         - prós
           - Acho que nenhum, seria a pior das alternativas, mas ainda assim satisfaria nosso objetivo
@@ -46,12 +47,13 @@ COLAR ESSE ARQUIVO (INCLUINDO ESSE CABEÇALHO ACIMA) NO SITE https://markmap.js.
           - agrava a problemática de alunos serem transferidos pois o professor teria que enviar de novo
       - [IDEAL] Rota que nós tenhamos acesso que retorne json com os dados
         - prós
-          - não envolverá qualquer tipo de pré registro das turmas pelos professores
+          - não envolverá qualquer tipo de pré registro das turmas pelos professores ou escolas
           - como teremos acesso direto à rota, os arquivos sempre estarão atualizados, e o problema dos alunos transferidos nâo existirá
         - contras
           - Não sei como seria a parte de segurança/autenticação da rota
           - Não sei que tipos de ids usariamos para acessar alguma turma especifica
           - Eles vão demorar um monte pra fazer
+        - idealmente, a rota retornaria dados sobre TODAS as escolas do PSE, facilitando a questão de ter que importar turmas especificas de escolas especificas
       - Envio periódico por parte deles
         - pode ser problemático
     - deve ser pensada a frequência que receberemos os dados
@@ -86,6 +88,3 @@ COLAR ESSE ARQUIVO (INCLUINDO ESSE CABEÇALHO ACIMA) NO SITE https://markmap.js.
   - Se sim, existe algum jeito de conectar esse login com o educarweb?
     - importante para facilitar a escolha da turma na hora de preencher a "folha" do PSE
     - existe algum jeito de evitar de o professor precisar criar o seu cadastro?
-
-
-
